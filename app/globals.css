@@ -54,3 +54,6 @@
 
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee { animation: marquee 38s linear infinite; }
+
+/* Sea Green blokların içindeki ana düğme koyu gri olur (yeşil üstünde yeşil görünmesin) */
+.bg-sky .btn-primary, .bg-sage .btn-primary, .bg-action .btn-primary { background-color: rgb(var(--ink)); }

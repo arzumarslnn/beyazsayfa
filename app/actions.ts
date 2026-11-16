@@ -326,3 +326,16 @@ export async function signOut() {
   await supabase.auth.signOut();
   redirect("/");
 }
+
+/* ---------------- Demo giriş ---------------- */
+export async function demoLogin(role: "ogrenci" | "veli" | "yonetim") {
+  const { DEMO_ACCOUNTS, demoEnabled } = await import("@/lib/demo");
+  if (!demoEnabled()) redirect("/giris");
+  const acc = DEMO_ACCOUNTS[role];
+  if (!acc) redirect("/demo");
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  const { error } = await supabase.auth.signInWithPassword({ email: acc.email, password: acc.password });
+  if (error) redirect("/demo?hata=1");
+  redirect("/panel");
+}

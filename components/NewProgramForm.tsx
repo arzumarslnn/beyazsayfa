@@ -18,7 +18,7 @@ export default function NewProgramForm({ initial }: { initial?: string }) {
             <label key={x.key} className={`cursor-pointer rounded-2xl border-2 p-4 transition ${key === x.key ? `border-action ${BG[x.color]}` : "border-line hover:border-ink/30"}`}>
               <input type="radio" name="behavior_key" value={x.key} checked={key === x.key} onChange={() => setKey(x.key)} className="sr-only" required />
               <b className="font-display text-lg">{x.title}</b> <span className="text-sm text-muted">· {x.age}</span>
-              <p className="text-sm text-ink/70">{x.short}</p>
+              <p className="text-sm text-ink">{x.short}</p>
             </label>
           ))}
         </div>

@@ -11,30 +11,31 @@
   ============================================================
 */
 :root {
-  /* Palet: Sea Green #00916E · Linen #FEEFE5 · Bright Amber #FFCF00 · Cayenne Red #EE6123 */
+  /* Palet: Sea Green #00916E · Linen #FEEFE5 · Bright Amber #FFCF00 · Cayenne Red #EE6123
+     Yazı rengi: çok koyu gri #2B2B2B (siyah yerine) */
 
   /* Zeminler */
-  --bg: 255 255 255;        /* Ana sayfa zemini: beyaz sayfa */
-  --paper: 254 239 229;     /* Linen */
-  --blush: 251 214 196;     /* Cayenne Red'in açık tonu */
-  --sky: 204 233 224;       /* Sea Green'in açık tonu */
-  --butter: 255 207 0;    /* Bright Amber */
-  --sage: 230 243 238;      /* Sea Green'in çok açık tonu */
+  --bg: 254 239 229;        /* Linen: sayfa zemini */
+  --paper: 255 255 255;     /* Beyaz: ara bölümler ve kartlar arası ayrım */
+  --blush: 238 97 35;       /* Cayenne Red bloklar */
+  --sky: 0 145 110;         /* Sea Green bloklar */
+  --butter: 255 207 0;      /* Bright Amber bloklar */
+  --sage: 0 145 110;        /* Sea Green bloklar */
 
   /* Yazı ve çizgiler */
-  --ink: 30 34 53;          /* Ana yazı rengi */
-  --muted: 93 98 117;       /* İkincil yazı */
-  --line: 240 225 214;      /* Kenar çizgileri */
+  --ink: 43 43 43;          /* Çok koyu gri: ana yazı */
+  --muted: 96 96 96;        /* İkincil yazı */
+  --line: 236 218 205;      /* Kenar çizgileri (Linen'in koyusu) */
 
   /* Düğmeler ve vurgular */
-  --action: 0 145 110;       /* Sea Green: ana düğmeler */
-  --action-ink: 255 255 255;/* Ana düğmenin yazı rengi */
-  --accent: 238 97 35;     /* Cayenne Red: vurgular */
+  --action: 0 145 110;      /* Sea Green: ana düğmeler */
+  --action-ink: 255 255 255;/* Düğme yazısı */
+  --accent: 238 97 35;      /* Cayenne Red: vurgular */
 
   /* Durum renkleri */
   --ok: 0 145 110;
-  --warn: 196 138 18;
-  --bad: 196 64 64;
+  --warn: 255 207 0;
+  --bad: 238 97 35;
 
   /* Yazı tipleri (app/layout.tsx içinde Google Fonts'tan yüklenir) */
   --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;

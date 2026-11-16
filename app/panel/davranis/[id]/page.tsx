@@ -142,10 +142,10 @@ export default async function Page({ params, searchParams }: { params: Promise<{
           <div className="mt-4 grid gap-5 lg:grid-cols-2">
             {fn && (
               <div className="rounded-3xl bg-butter p-6 lg:col-span-2">
-                <span className="eyebrow text-ink/70">Olası işlev</span>
+                <span className="eyebrow text-ink">Olası işlev</span>
                 <h3 className="mt-1">{fn.name}</h3>
                 <p className="mt-2 max-w-prose">{fn.explain}</p>
-                <p className="mt-2 text-sm text-ink/70">Bu bir ön değerlendirmedir; kesin bir tanı değildir. Koçunuzla birlikte değerlendirebilirsiniz.</p>
+                <p className="mt-2 text-sm text-ink">Bu bir ön değerlendirmedir; kesin bir tanı değildir. Koçunuzla birlikte değerlendirebilirsiniz.</p>
               </div>
             )}
             <div><b>En sık öncüller</b><ul className="mt-2 grid gap-1.5">{a.ant.slice(0, 3).map((x) => <li key={x.label} className="flex justify-between gap-3 rounded-xl bg-paper px-3 py-2"><span>{x.label}</span><b className="tabular-nums">{x.n}</b></li>)}</ul></div>

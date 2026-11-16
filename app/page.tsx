@@ -69,7 +69,7 @@ export default async function Home() {
                 <div>
                   <span className="chip bg-bg/70 text-ink">{b.age}</span>
                   <h3 className="mt-3">{b.title}</h3>
-                  <p className="mt-1 text-[15px] text-ink/70">{b.short}</p>
+                  <p className="mt-1 text-[15px] text-ink">{b.short}</p>
                 </div>
                 <span className="mt-4 font-bold">Çözümü gör <span className="inline-block transition group-hover:translate-x-1">→</span></span>
               </Link>
@@ -143,9 +143,9 @@ export default async function Home() {
       <section className="wrap">
         <div className="grid items-center gap-8 rounded-[2.5rem] bg-butter p-8 md:grid-cols-[1fr_auto] md:p-14">
           <div className="flex flex-col gap-3">
-            <span className="eyebrow text-ink/70">Ücretsiz</span>
+            <span className="eyebrow text-ink">Ücretsiz</span>
             <h2>Mizacını ve öğrenme stilini 5 dakikada keşfet</h2>
-            <p className="max-w-prose text-lg text-ink/75">Testi çöz, sonucunu hemen gör. Üye öğrencilerde analiz kaydedilir ve öğrenci isterse aynı rapor veliye e-posta ve WhatsApp ile gider.</p>
+            <p className="max-w-prose text-lg text-ink">Testi çöz, sonucunu hemen gör. Üye öğrencilerde analiz kaydedilir ve öğrenci isterse aynı rapor veliye e-posta ve WhatsApp ile gider.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
             <Link href="/testler/mizac" className="btn-primary">Mizaç testi</Link>
@@ -180,7 +180,7 @@ export default async function Home() {
         <section className="bg-blush py-20">
           <div className="wrap">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
-              <div className="flex flex-col gap-3"><span className="eyebrow text-ink/70">Deneyimler</span><h2>Bizimle yol yürüyenler</h2></div>
+              <div className="flex flex-col gap-3"><span className="eyebrow text-ink">Deneyimler</span><h2>Bizimle yol yürüyenler</h2></div>
               <Link href="/deneyimler" className="btn-light">Tümünü oku</Link>
             </div>
             <div className="grid gap-5 md:grid-cols-3">

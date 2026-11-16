@@ -11,6 +11,7 @@ export default function Page() {
         <ul className="mt-2 grid gap-3 text-lg">
           {["Test sonuçlarının ayrıntılı analizi", "Davranış programı (ücretsiz)", "Formlar ve deneme takibi", "Eğitim ve paket fiyatları"].map((x) => <li key={x} className="flex gap-3"><span className="text-action">✓</span>{x}</li>)}
         </ul>
+        <a href="/demo" className="mt-2 self-start font-bold text-action">Önce demo hesaplarla denemek ister misiniz? →</a>
       </div>
       <div className="card md:p-10"><Suspense><RegisterForm /></Suspense></div>
     </section>

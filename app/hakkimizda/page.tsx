@@ -24,7 +24,7 @@ export default function Page() {
             ["bg-paper", "Gizlilik ve güven", "Çocuğun anlattıkları ve doldurduğu formlar yalnızca koçuyla paylaşılır."],
           ].map(([bg, t, d]) => (
             <div key={t} className={`${bg} rounded-3xl p-6`}>
-              <h3 className="text-xl">{t}</h3><p className="mt-1 text-ink/75">{d}</p>
+              <h3 className="text-xl">{t}</h3><p className="mt-1 text-ink">{d}</p>
             </div>
           ))}
           <Link href="/iletisim" className="btn-primary mt-2 justify-self-start">Bizimle tanışın</Link>

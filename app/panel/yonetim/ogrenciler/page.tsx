@@ -55,7 +55,7 @@ export default async function Page() {
             {rows.filter((r) => r.mz || r.f2).map(({ s, mz, f2 }) => (
               <div key={s.id} className="grid gap-3 md:grid-cols-2">
                 <div className="rounded-3xl bg-blush p-6"><b className="font-display text-lg">{s.full_name}</b>
-                  {mz ? <><p className="mt-1 font-semibold">Baskın mizaç: {MIZAC[mz.dominant]?.name}</p><p className="mt-1 text-ink/80">{MIZAC[mz.dominant]?.genel}</p><p className="mt-2 text-sm"><b>Aileye öneri:</b> {MIZAC[mz.dominant]?.veli[0]}</p></> : <p className="mt-1 text-muted">Mizaç testi yok.</p>}</div>
+                  {mz ? <><p className="mt-1 font-semibold">Baskın mizaç: {MIZAC[mz.dominant]?.name}</p><p className="mt-1 text-ink">{MIZAC[mz.dominant]?.genel}</p><p className="mt-2 text-sm"><b>Aileye öneri:</b> {MIZAC[mz.dominant]?.veli[0]}</p></> : <p className="mt-1 text-muted">Mizaç testi yok.</p>}</div>
                 <div className="rounded-3xl bg-sky p-6"><b className="font-display text-lg">Veli beklentisi</b>
                   {f2 ? <><p className="mt-1">{f2.data?.beklenti}</p><p className="mt-2 text-sm"><b>Endişe:</b> {f2.data?.endise}</p><p className="mt-1 text-sm"><b>Çocuğu üç kelimeyle:</b> {f2.data?.uc_kelime || "—"}</p></> : <p className="mt-1 text-muted">Veli Ön Bilgilendirme Formu yok.</p>}</div>
               </div>

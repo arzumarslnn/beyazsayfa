@@ -15,7 +15,7 @@ export default async function Page() {
           {msgs.map((m) => (
             <article key={m.id} className={`card ${m.read ? "" : "ring-2 ring-accent"}`}>
               <div className="flex flex-wrap justify-between gap-2"><b className="font-display text-xl">{m.subject}</b><span className="text-sm text-muted">{trDate(m.created_at)}</span></div>
-              <p className="mt-3 whitespace-pre-wrap text-ink/85">{m.body}</p>
+              <p className="mt-3 whitespace-pre-wrap text-ink">{m.body}</p>
             </article>
           ))}
         </div>

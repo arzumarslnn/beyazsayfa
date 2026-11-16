@@ -3,6 +3,7 @@ import PanelNav from "@/components/PanelNav";
 import { PendingTestSaver } from "@/components/TestRunner";
 import { createClient, getMe } from "@/lib/supabase/server";
 import { signOut } from "@/app/actions";
+import { isDemoEmail } from "@/lib/demo";
 
 export const dynamic = "force-dynamic";
 const ROLE = { ogrenci: "Öğrenci paneli", veli: "Veli paneli", yonetim: "Yönetim paneli" } as const;
@@ -45,7 +46,10 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         <PanelNav items={items} />
         <form action={signOut}><button className="px-4 text-sm font-semibold text-muted hover:text-ink">Çıkış yap</button></form>
       </aside>
-      <div className="min-w-0">{children}</div>
+      <div className="min-w-0">
+        {isDemoEmail(me.email) && <p className="mb-6 rounded-2xl bg-butter px-4 py-3 font-semibold">Demo hesaptasınız. Veriler örnektir ve ortak kullanılır. <a href="/demo" className="underline">Başka bir rolle girin</a></p>}
+        {children}
+      </div>
       {me.role === "ogrenci" && <PendingTestSaver />}
     </div>
   );

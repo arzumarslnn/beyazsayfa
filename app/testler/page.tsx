@@ -12,7 +12,7 @@ export default function Page() {
         {(Object.entries(TESTS) as [keyof typeof TESTS, (typeof TESTS)[keyof typeof TESTS]][]).map(([k, t], i) => (
           <div key={k} className={`${i ? "bg-sky" : "bg-blush"} flex flex-col gap-4 rounded-[2rem] p-8 md:p-10`}>
             <h2 className="text-3xl md:text-4xl">{t.title}</h2>
-            <p className="text-lg text-ink/80">{t.desc}</p>
+            <p className="text-lg text-ink">{t.desc}</p>
             <div className="flex gap-2"><span className="chip bg-bg/70 text-ink">{t.questions.length} soru</span><span className="chip bg-bg/70 text-ink">{t.minutes}</span></div>
             <Link href={`/testler/${k}`} className="btn-primary mt-2 self-start">Teste başla</Link>
           </div>

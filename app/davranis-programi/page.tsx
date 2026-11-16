@@ -23,7 +23,7 @@ export default async function Page() {
           {[["A", "Öncül", "Davranıştan hemen önce ne oldu?", "Ekranı kapatmasını istedim.", "bg-sky"], ["B", "Davranış", "Çocuk tam olarak ne yaptı?", "Bağırdı, tableti yere attı.", "bg-blush"], ["C", "Sonuç", "Hemen ardından ne oldu?", "Sakinleşsin diye 10 dakika daha verdim.", "bg-butter"]].map(([l, t, q, ex, bg]) => (
             <div key={l} className={`${bg} rounded-[2rem] p-7`}>
               <span className="font-display text-6xl font-extrabold">{l}</span>
-              <h3 className="mt-2">{t}</h3><p className="mt-1 text-ink/75">{q}</p>
+              <h3 className="mt-2">{t}</h3><p className="mt-1 text-ink">{q}</p>
               <p className="mt-4 rounded-2xl bg-bg/70 p-4 text-[15px]"><b>Örnek:</b> {ex}</p>
             </div>
           ))}
@@ -48,7 +48,7 @@ export default async function Page() {
           {BEHAVIORS.map((b) => (
             <div key={b.key} id={b.key} className={`${BG[b.color]} scroll-mt-24 rounded-[2rem] p-7`}>
               <div className="flex flex-wrap items-center justify-between gap-2"><h3>{b.title}</h3><span className="chip bg-bg/70 text-ink">{b.age}</span></div>
-              <p className="mt-2 text-ink/75">Sık duyduğumuz cümleler: {b.examples.map((e) => `“${e}”`).join(", ")}</p>
+              <p className="mt-2 text-ink">Sık duyduğumuz cümleler: {b.examples.map((e) => `“${e}”`).join(", ")}</p>
               <p className="mt-4 rounded-2xl bg-bg/70 p-4"><b>Hedef davranış:</b> {b.target}</p>
               <Link href={me ? `/panel/davranis/yeni?b=${b.key}` : `/kayit?sonra=/panel/davranis/yeni?b=${b.key}`} className="mt-4 inline-block font-bold">Bu davranışla başla →</Link>
             </div>

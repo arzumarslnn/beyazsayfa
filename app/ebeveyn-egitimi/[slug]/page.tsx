@@ -27,11 +27,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       <section className={BG[c.color]}>
         <div className="wrap grid items-center gap-10 py-14 md:grid-cols-[1.15fr_0.85fr] md:py-20">
           <div className="flex flex-col gap-5">
-            <Link href="/ebeveyn-egitimi" className="text-sm font-bold text-ink/70 hover:text-ink">← Tüm eğitimler</Link>
+            <Link href="/ebeveyn-egitimi" className="text-sm font-bold text-ink hover:text-ink">← Tüm eğitimler</Link>
             <div className="flex gap-2"><span className="chip bg-bg/70 text-ink">{c.age}</span><span className="chip bg-bg/70 text-ink">{c.lessons.length} ders · {c.lessons.reduce((a, l) => a + l.minutes, 0)} dk</span></div>
             <h1>{c.title}</h1>
-            <p className="text-xl text-ink/80"><b>Sorun:</b> {c.problem}</p>
-            <p className="text-xl text-ink/80"><b>Hedef:</b> {c.promise}</p>
+            <p className="text-xl text-ink"><b>Sorun:</b> {c.problem}</p>
+            <p className="text-xl text-ink"><b>Hedef:</b> {c.promise}</p>
             <div className="flex flex-wrap items-center gap-4 pt-2">
               {access ? (
                 <span className="chip bg-ok text-white">Bu eğitime erişiminiz var</span>

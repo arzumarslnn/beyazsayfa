@@ -18,9 +18,9 @@ export default async function Page() {
           <div className="rounded-3xl bg-sky p-7">
             <h3>Bize ulaşın</h3>
             <dl className="mt-4 grid gap-3">
-              <div><dt className="text-sm font-bold text-ink/60">E-posta</dt><dd className="font-semibold">{SITE.email}</dd></div>
-              <div><dt className="text-sm font-bold text-ink/60">Telefon</dt><dd className="font-semibold">{SITE.phone}</dd></div>
-              <div><dt className="text-sm font-bold text-ink/60">Adres</dt><dd className="font-semibold">{SITE.address}</dd></div>
+              <div><dt className="text-sm font-bold text-ink">E-posta</dt><dd className="font-semibold">{SITE.email}</dd></div>
+              <div><dt className="text-sm font-bold text-ink">Telefon</dt><dd className="font-semibold">{SITE.phone}</dd></div>
+              <div><dt className="text-sm font-bold text-ink">Adres</dt><dd className="font-semibold">{SITE.address}</dd></div>
             </dl>
             <a href={whatsappLink("Merhaba, ön görüşme için randevu almak istiyorum.")} target="_blank" rel="noopener" className="btn mt-5 bg-[#25D366] text-white">WhatsApp'tan yazın</a>
           </div>

@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
       <p className="mt-2 text-muted">{trDate(e.created_at)} · Dolduran: {(e as any).owner?.full_name}{(e as any).student?.full_name ? ` · Öğrenci: ${(e as any).student.full_name}` : ""}</p>
       <dl className="card mt-6 grid gap-5 md:p-8">
         {f.fields.map((fl) => (
-          <div key={fl.k}><dt className="font-bold">{fl.label}</dt><dd className="mt-1 whitespace-pre-wrap text-ink/80">{e.data?.[fl.k] ? (fl.type === "scale" ? `${e.data[fl.k]} / 5` : e.data[fl.k]) : "—"}</dd></div>
+          <div key={fl.k}><dt className="font-bold">{fl.label}</dt><dd className="mt-1 whitespace-pre-wrap text-ink">{e.data?.[fl.k] ? (fl.type === "scale" ? `${e.data[fl.k]} / 5` : e.data[fl.k]) : "—"}</dd></div>
         ))}
       </dl>
     </div>

@@ -21,7 +21,7 @@ export default async function Page() {
             {stories.map((s, i) => (
               <figure key={s.id} className={`${BG[i % 4]} mb-5 break-inside-avoid rounded-3xl p-7`}>
                 <blockquote className="font-display text-xl font-semibold leading-snug">“{s.body}”</blockquote>
-                <figcaption className="mt-4 font-bold">{s.display_name} <span className="font-normal text-ink/70">· {s.role_label}</span></figcaption>
+                <figcaption className="mt-4 font-bold">{s.display_name} <span className="font-normal text-ink">· {s.role_label}</span></figcaption>
               </figure>
             ))}
           </div>

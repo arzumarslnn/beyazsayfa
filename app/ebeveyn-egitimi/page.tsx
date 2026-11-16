@@ -21,9 +21,9 @@ export default async function Page() {
               <div className="flex flex-1 flex-col gap-3 p-7">
                 <div className="flex items-center gap-2"><span className="chip bg-bg/70 text-ink">{c.age}</span><span className="chip bg-bg/70 text-ink">{c.lessons.length} ders</span></div>
                 <h3 className="text-2xl">{c.title}</h3>
-                <p className="text-ink/75">{c.problem}</p>
+                <p className="text-ink">{c.problem}</p>
                 <div className="mt-auto flex items-center justify-between pt-3">
-                  {me ? <span className="font-display text-2xl font-extrabold tabular-nums">{tl(c.price)}</span> : <span className="text-sm font-bold text-ink/70">Fiyat üyelere özel</span>}
+                  {me ? <span className="font-display text-2xl font-extrabold tabular-nums">{tl(c.price)}</span> : <span className="text-sm font-bold text-ink">Fiyat üyelere özel</span>}
                   <span className="font-bold">İncele <span className="inline-block transition group-hover:translate-x-1">→</span></span>
                 </div>
               </div>
