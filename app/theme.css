@@ -1,0 +1,42 @@
+/*
+  ============================================================
+  BEYAZSAYFA RENK PALETİ VE YAZI TİPLERİ
+  ============================================================
+  Sitenin bütün renkleri buradan gelir. Bir rengi değiştirmek
+  için sadece aşağıdaki değeri değiştirmeniz yeterli.
+
+  Renkler "R G B" biçiminde yazılır (virgülsüz, üç sayı).
+  Örnek: #1F4E45  ->  31 78 69
+  Dönüştürmek için: https://www.rapidtables.com/convert/color/hex-to-rgb.html
+  ============================================================
+*/
+:root {
+  /* Zeminler */
+  --bg: 255 255 255;        /* Ana sayfa zemini: beyaz sayfa */
+  --paper: 250 246 241;     /* Yumuşak bölüm zemini */
+  --blush: 248 219 210;     /* Pembe-şeftali vurgu zemini */
+  --sky: 214 231 238;       /* Açık mavi vurgu zemini */
+  --butter: 249 230 168;    /* Sarı vurgu zemini */
+  --sage: 214 228 214;      /* Adaçayı yeşili vurgu zemini */
+
+  /* Yazı ve çizgiler */
+  --ink: 30 34 53;          /* Ana yazı rengi */
+  --muted: 93 98 117;       /* İkincil yazı */
+  --line: 233 226 218;      /* Kenar çizgileri */
+
+  /* Düğmeler ve vurgular */
+  --action: 31 78 69;       /* Ana düğme rengi */
+  --action-ink: 255 255 255;/* Ana düğmenin yazı rengi */
+  --accent: 228 111 79;     /* Küçük vurgular, etiketler */
+
+  /* Durum renkleri */
+  --ok: 46 140 87;
+  --warn: 196 138 18;
+  --bad: 196 64 64;
+
+  /* Yazı tipleri (app/layout.tsx içinde Google Fonts'tan yüklenir) */
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+
+  color-scheme: light;
+}

@@ -1,0 +1,7 @@
+import { redirect } from "next/navigation";
+import { getMe } from "@/lib/supabase/server";
+export default async function L({ children }: { children: React.ReactNode }) {
+  const me = await getMe();
+  if (me?.role !== "yonetim") redirect("/panel");
+  return <>{children}</>;
+}
