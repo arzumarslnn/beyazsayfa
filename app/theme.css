@@ -11,26 +11,28 @@
   ============================================================
 */
 :root {
+  /* Palet: Sea Green #00916E · Linen #FEEFE5 · Bright Amber #FFCF00 · Cayenne Red #EE6123 */
+
   /* Zeminler */
   --bg: 255 255 255;        /* Ana sayfa zemini: beyaz sayfa */
-  --paper: 250 246 241;     /* Yumuşak bölüm zemini */
-  --blush: 248 219 210;     /* Pembe-şeftali vurgu zemini */
-  --sky: 214 231 238;       /* Açık mavi vurgu zemini */
-  --butter: 249 230 168;    /* Sarı vurgu zemini */
-  --sage: 214 228 214;      /* Adaçayı yeşili vurgu zemini */
+  --paper: 254 239 229;     /* Linen */
+  --blush: 251 214 196;     /* Cayenne Red'in açık tonu */
+  --sky: 204 233 224;       /* Sea Green'in açık tonu */
+  --butter: 255 207 0;    /* Bright Amber */
+  --sage: 230 243 238;      /* Sea Green'in çok açık tonu */
 
   /* Yazı ve çizgiler */
   --ink: 30 34 53;          /* Ana yazı rengi */
   --muted: 93 98 117;       /* İkincil yazı */
-  --line: 233 226 218;      /* Kenar çizgileri */
+  --line: 240 225 214;      /* Kenar çizgileri */
 
   /* Düğmeler ve vurgular */
-  --action: 31 78 69;       /* Ana düğme rengi */
+  --action: 0 145 110;       /* Sea Green: ana düğmeler */
   --action-ink: 255 255 255;/* Ana düğmenin yazı rengi */
-  --accent: 228 111 79;     /* Küçük vurgular, etiketler */
+  --accent: 238 97 35;     /* Cayenne Red: vurgular */
 
   /* Durum renkleri */
-  --ok: 46 140 87;
+  --ok: 0 145 110;
   --warn: 196 138 18;
   --bad: 196 64 64;
 
