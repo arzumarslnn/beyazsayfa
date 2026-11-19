@@ -11,31 +11,31 @@
   ============================================================
 */
 :root {
-  /* Palet: Sea Green #00916E · Linen #FEEFE5 · Bright Amber #FFCF00 · Cayenne Red #EE6123
-     Yazı rengi: çok koyu gri #2B2B2B (siyah yerine) */
+  /* Canlı palet: yeşil + mavi + turuncu, serin beyaz zemin, koyu gri yazı */
 
   /* Zeminler */
-  --bg: 254 239 229;        /* Linen: sayfa zemini */
-  --paper: 255 255 255;     /* Beyaz: ara bölümler ve kartlar arası ayrım */
-  --blush: 238 97 35;       /* Cayenne Red bloklar */
-  --sky: 0 145 110;         /* Sea Green bloklar */
-  --butter: 255 207 0;      /* Bright Amber bloklar */
-  --sage: 0 145 110;        /* Sea Green bloklar */
+  --bg: 245 247 250;        /* Serin, hafif gri beyaz: sayfa zemini */
+  --paper: 255 255 255;     /* Beyaz: kartlar ve ara bölümler */
+  --blush: 255 216 194;     /* Canlı şeftali-turuncu blok */
+  --sky: 207 224 255;       /* Canlı açık mavi blok */
+  --butter: 255 230 128;    /* Canlı sarı blok */
+  --sage: 190 240 218;      /* Canlı nane yeşili blok */
 
   /* Yazı ve çizgiler */
-  --ink: 43 43 43;          /* Çok koyu gri: ana yazı */
-  --muted: 96 96 96;        /* İkincil yazı */
-  --line: 236 218 205;      /* Kenar çizgileri (Linen'in koyusu) */
+  --ink: 31 41 51;          /* Çok koyu gri: ana yazı (#1F2933) */
+  --muted: 91 102 117;      /* İkincil yazı */
+  --line: 227 232 239;      /* Kenar çizgileri */
 
   /* Düğmeler ve vurgular */
-  --action: 0 145 110;      /* Sea Green: ana düğmeler */
-  --action-ink: 255 255 255;/* Düğme yazısı */
-  --accent: 238 97 35;      /* Cayenne Red: vurgular */
+  --action: 47 107 255;     /* Canlı mavi: ana düğmeler (#2F6BFF) */
+  --action-ink: 255 255 255;
+  --leaf: 16 185 129;       /* Canlı yeşil: başlık vurgusu, işaretler (#10B981) */
+  --accent: 255 122 47;     /* Turuncu: küçük vurgular (#FF7A2F) */
 
   /* Durum renkleri */
-  --ok: 0 145 110;
-  --warn: 255 207 0;
-  --bad: 238 97 35;
+  --ok: 16 185 129;
+  --warn: 245 166 35;
+  --bad: 229 72 77;
 
   /* Yazı tipleri (app/layout.tsx içinde Google Fonts'tan yüklenir) */
   --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;

@@ -9,7 +9,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: `${SITE.name} · Aile ve Öğrenci Koçluğu`, template: `%s · ${SITE.name}` },
-  description: "Öğrenci koçluğu, ebeveyn davranış eğitimi, mizaç ve öğrenme stili testleri. Çocuğun mutluluğunu ve aileyle iletişimini merkeze alan koçluk.",
+  description: "Öğrenci koçluğu ve ebeveyn davranış eğitimi. Öğrencilere koçluk yapıyor, ebeveynlere çocuklarının davranışlarını kendi başlarına değiştirmeyi öğretiyoruz.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

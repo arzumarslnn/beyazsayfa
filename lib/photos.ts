@@ -7,6 +7,10 @@ const px = (id: number) => `https://images.pexels.com/photos/${id}/pexels-photo-
 export type Photo = { src: string; alt: string; credit?: string };
 
 export const PHOTOS: Record<string, Photo> = {
+  // Ana sayfa geçişli fotoğraflar
+  slaytIlkokul: { src: px(4261270), alt: "Anne ve baba ilkokul çağındaki kızlarını okula hazırlıyor" },
+  slaytLise: { src: px(6957143), alt: "Bir anne ve lise çağındaki kızı kahvaltıda gülüşüyor" },
+  video: { src: px(4260314), alt: "Bir anne kızına ödevinde yardım ediyor" },
   hero: { src: px(7469382), alt: "İstanbul'da bir aile evde birlikte yemek yiyor" },
   aile: { src: px(7469292), alt: "İstanbul'da bir aile küçük oğullarıyla akşam yemeğinde" },
   kocluk: { src: px(7694945), alt: "Bir öğrenci masasında not alırken" },

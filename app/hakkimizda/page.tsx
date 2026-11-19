@@ -11,14 +11,14 @@ export default function Page() {
         <div className="prose-body max-w-prose text-lg">
           <h2>Biz kimiz?</h2>
           <p>Beyazsayfa, öğrenci koçluğunu ailenin dışında tutulan bir ders takibi olarak değil, bütün ailenin birlikte büyüdüğü bir süreç olarak görür. Çocuğun iyi bir okula girmesi güzel bir sonuçtur; asıl hedefimiz ise çocuğun kendini tanıması, sevdiği bir işe yönelmesi ve ailesiyle güvenli bir iletişim kurmasıdır.</p>
-          <p>Ebeveyn eğitimlerimizde çocuğun davranışını kontrol etmeyi değil; davranışı anlamayı, olumlu davranışı geliştirmeyi ve problem davranışı azaltmayı öğretiyoruz. Yöntemlerimiz davranış bilimi ve olumlu ebeveynlik alanındaki araştırmalara dayanır.</p>
+          <p>Ebeveyn davranış eğitimlerimizde çocukların davranışlarını biz düzeltmiyoruz. Ebeveynlere, çocuklarının davranışlarını anlamayı, olumlu davranışı geliştirmeyi ve problem davranışı kendi başlarına değiştirmeyi öğretiyoruz. Çünkü davranışın öncesi ve sonrası evde, sizin yanınızda yaşanır. Yöntemlerimiz davranış bilimi ve olumlu ebeveynlik alanındaki araştırmalara dayanır.</p>
           <h2>Ekibimiz</h2>
           <p className="text-muted">[Kurucu ve ekip üyelerinin fotoğrafları, eğitimleri ve sertifikaları buraya eklenecek.]</p>
         </div>
         <div className="grid content-start gap-4">
           {[
             ["bg-blush", "Önce mutluluk", "Başarıyı çocuğun iyi olma hâli üzerine kuruyoruz."],
-            ["bg-sky", "Aile sürecin ortağıdır", "Veliler formlar, eğitimler ve görüşmelerle sürecin içindedir."],
+            ["bg-sky", "Ebeveyne öğretiyoruz", "Çocuğun davranışını değiştirecek olan sizsiniz; biz size nasıl yapacağınızı öğretiyoruz."],
             ["bg-butter", "Her çocuk farklıdır", "Plan, mizaca ve öğrenme stiline göre kişiye özel hazırlanır."],
             ["bg-sage", "Bilimsel ve ölçülebilir", "Davranış kayıtları ve formlarla gelişimi birlikte görürüz."],
             ["bg-paper", "Gizlilik ve güven", "Çocuğun anlattıkları ve doldurduğu formlar yalnızca koçuyla paylaşılır."],

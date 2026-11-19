@@ -41,6 +41,7 @@ export function RegisterForm() {
   const sp = useSearchParams();
   const router = useRouter();
   const [role, setRole] = useState(sp.get("rol") === "ogrenci" ? "ogrenci" : "veli");
+  const fixed = sp.get("sabit") === "1";
   const [err, setErr] = useState(""); const [busy, setBusy] = useState(false); const [sent, setSent] = useState("");
   if (sent) return (
     <div className="flex flex-col gap-3">
@@ -69,6 +70,9 @@ export function RegisterForm() {
       if (error) return setErr(trError(error.message));
       if (data.session) { router.push(next); router.refresh(); } else setSent(email);
     }}>
+      {fixed ? (
+        <p className="rounded-2xl bg-sage px-4 py-3 font-semibold">Veli hesabı açıyorsunuz. Davranış programı ve eğitimler ebeveynler içindir.</p>
+      ) : (
       <fieldset className="grid grid-cols-2 gap-2 rounded-2xl bg-paper p-1.5">
         <legend className="sr-only">Hesap türü</legend>
         {[["veli", "Veliyim"], ["ogrenci", "Öğrenciyim"]].map(([v, l]) => (
@@ -77,6 +81,7 @@ export function RegisterForm() {
           </label>
         ))}
       </fieldset>
+      )}
       <Input name="full_name" label="Ad soyad" required autoComplete="name" />
       <Input name="email" label="E-posta" type="email" required autoComplete="email" />
       <Input name="password" label="Şifre" type="password" required autoComplete="new-password" hint="En az 8 karakter" minLength={8} />

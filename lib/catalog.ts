@@ -3,7 +3,8 @@
 
 export type Lesson = { title: string; minutes: number; body: string; video?: string };
 export type Course = {
-  key: string; kind: "egitim"; title: string; age: string; price: number; color: string; photo: string;
+  key: string; kind: "egitim"; group?: "paket" | "konu"; badge?: string; includes?: string[];
+  title: string; age: string; price: number; color: string; photo: string;
   problem: string; promise: string; outcomes: string[]; behaviorKey?: string; lessons: Lesson[];
 };
 export type Package = {
@@ -11,7 +12,56 @@ export type Package = {
   summary: string; items: string[];
 };
 
-export const COURSES: Course[] = [
+
+const HAZIRLIK_LESSONS: Lesson[] = [
+  { title: "Davranışı kim değiştirir?", minutes: 10, body: "Bu eğitimde çocuğunuzun davranışını biz düzeltmiyoruz; onu sizin değiştirmenize yardım ediyoruz. Çünkü davranışın öncesinde ve sonrasında olanların çoğu evde, sizin yanınızda yaşanır. Bu derste ebeveynin rolünü, tutarlılığın neden her şeyden önemli olduğunu ve bu yolculukta sizden neler beklendiğini konuşuyoruz." },
+  { title: "Önce kendinizi gözlemleyin", minutes: 11, body: "Çocuğun davranışı çoğu zaman bizim tepkimizle büyür ya da söner. Bu derste kendi tetikleyicilerinizi, sesinizi yükselttiğiniz anları ve sakin kalmanızı kolaylaştıran küçük alışkanlıkları fark etmeyi öğreniyorsunuz. Ödev: bir hafta boyunca kendi tepkilerinizi not edin." },
+  { title: "Çocuğunuzu tanıyın: yaş, mizaç, ihtiyaç", minutes: 12, body: "Aynı davranış 3 yaşında ve 13 yaşında farklı anlamlar taşır. Yaş dönemlerinin beklentilerini, mizacın davranışa etkisini ve davranışın arkasındaki temel ihtiyaçları (ilgi, özerklik, güven, dinlenme) tanıyoruz." },
+  { title: "Davranışı doğru tanımlamak", minutes: 9, body: "“Yaramazlık yapıyor” bir davranış değil, bir yorumdur. “Ödev saatinde masadan kalkıp odasına gidiyor” ise gözlemlenebilir bir davranıştır. Değiştirmek istediğiniz davranışı ölçülebilir hale getirmeyi ve yerine görmek istediğiniz davranışı yazmayı öğreniyorsunuz." },
+  { title: "Evi hazırlamak: rutin, uzlaşı, kayıt", minutes: 10, body: "Anne ve babanın aynı dili konuşması, günün belli bir düzende akması ve küçük bir kayıt alışkanlığı, tekniklerin işe yaraması için zemin hazırlar. Bu derste aile içinde nasıl uzlaşacağınızı ve Davranış Programı'nda ilk kaydınızı nasıl tutacağınızı göreceksiniz." },
+];
+const TEKNIK_LESSONS: Lesson[] = [
+  { title: "ABC: davranışın öncesi ve sonrası", minutes: 12, body: "Her davranışın bir öncesi (A) ve bir sonrası (C) vardır. Bu derste ABC kaydı tutmayı ve kayıtlarınızdan örüntü çıkarmayı öğreniyorsunuz: davranış en çok ne zaman, kimle, hangi durumda oluyor ve hemen ardından ne oluyor?" },
+  { title: "Davranışın işlevi", minutes: 11, body: "Davranış çocuğa bir şey kazandırır: ilgi, zor bir görevden kaçmak, istediğini elde etmek ya da bedensel bir ihtiyacı karşılamak. İşlevi bulduğunuzda, aynı ihtiyacı karşılayan daha uygun bir davranışı öğretebilirsiniz." },
+  { title: "Önleme teknikleri", minutes: 12, body: "Davranış başlamadan önce yapılabilecekler: ortamı düzenlemek, geçişlerden önce uyarı vermek, iki seçenek sunmak, görevi küçük parçalara bölmek, beklentiyi önceden konuşmak." },
+  { title: "Olumlu davranışı büyütmek", minutes: 13, body: "Çocuklar en çok fark edilen davranışı tekrarlar. Betimleyici övgü, anında pekiştirme ve doğru kurulmuş bir puan tablosuyla görmek istediğiniz davranışı nasıl büyüteceğinizi öğreniyorsunuz." },
+  { title: "Problem davranış olduğunda", minutes: 13, body: "Planlı görmezden gelme, doğal ve mantıksal sonuçlar, sakin ve kısa sınır cümleleri, mola. Ve en önemlisi: kararınızı davranış büyüdüğünde değiştirmemek." },
+  { title: "Kendi davranış planınızı yazmak", minutes: 14, body: "Öğrendiğiniz her şeyi bir araya getirerek çocuğunuza özel bir plan yazıyorsunuz. Davranış Programı'ndaki günlük kayıt ve grafiklerle planın işe yarayıp yaramadığını haftalar içinde kendi gözünüzle görüyorsunuz." },
+];
+
+export const PACKAGE_COURSES: Course[] = [
+  {
+    key: "davranis-hazirlik", kind: "egitim", group: "paket", title: "Davranış Eğitimine Hazırlık", age: "Tüm yaşlar", price: 1450, color: "sky", photo: "ebeveyn",
+    problem: "Çocuğunuzun davranışını değiştirmek istiyorsunuz ama nereden başlayacağınızı bilmiyorsunuz.",
+    promise: "Teknikleri uygulamadan önce kendinizi, çocuğunuzu ve evinizi hazırlamak.",
+    outcomes: ["Ebeveynin rolü ve tutarlılık", "Kendi tepkilerinizi yönetmek", "Davranışı ölçülebilir şekilde tanımlamak", "Ev düzeni ve aile içi uzlaşı"],
+    lessons: HAZIRLIK_LESSONS,
+  },
+  {
+    key: "davranis-teknikler", kind: "egitim", group: "paket", title: "Davranışı Tanıma ve Teknikler", age: "Tüm yaşlar", price: 2450, color: "sage", photo: "isbirligi",
+    problem: "Ne denediyseniz davranış değişmiyor ya da kısa süre sonra geri geliyor.",
+    promise: "Davranışı tanımayı ve onu sizin değiştirmenizi sağlayacak teknikleri öğrenmek.",
+    outcomes: ["ABC kaydı ve örüntü bulma", "Davranışın işlevini anlamak", "Önleme, pekiştirme ve sonuç teknikleri", "Kendi davranış planınızı yazmak"],
+    lessons: TEKNIK_LESSONS,
+  },
+  {
+    key: "davranis-tam", kind: "egitim", group: "paket", badge: "En avantajlı", includes: ["davranis-hazirlik", "davranis-teknikler"],
+    title: "Tam Paket", age: "Tüm yaşlar", price: 3450, color: "butter", photo: "aile",
+    problem: "Hazırlıktan uygulamaya, davranış değiştirmenin bütün yolunu bir arada istiyorsunuz.",
+    promise: "İki paketin tamamı ve planınızı bir koçla birlikte gözden geçireceğiniz bir görüşme.",
+    outcomes: ["Davranış Eğitimine Hazırlık paketinin tamamı", "Davranışı Tanıma ve Teknikler paketinin tamamı", "1 bireysel plan değerlendirme görüşmesi", "Davranış Programı'nda koç geri bildirimi"],
+    lessons: [...HAZIRLIK_LESSONS, ...TEKNIK_LESSONS],
+  },
+];
+
+export type TestProduct = { key: "testler"; kind: "test"; title: string; price: number; summary: string; items: string[] };
+export const TEST_PRODUCT: TestProduct = {
+  key: "testler", kind: "test", title: "Mizaç ve Öğrenme Testleri", price: 750,
+  summary: "Öğrencinin mizacını ve öğrenme stilini ortaya koyan iki test, ayrıntılı analiz ve veliye öneriler.",
+  items: ["Mizaç Analiz Testi (12 soru)", "Öğrenme Stili Testi (10 soru)", "Ayrıntılı analiz ve çalışma önerileri", "Sonucun veliye e-posta ve WhatsApp ile iletilmesi"],
+};
+
+export const TOPIC_COURSES: Course[] = [
   {
     key: "ofke-nobetleri", kind: "egitim", title: "Öfke Nöbetleriyle Sakin Kalmak", age: "2–8 yaş", price: 1250, color: "blush", photo: "ofke", behaviorKey: "ofke",
     problem: "Hayır dediğiniz anda yere atılan, bağıran, sakinleşemeyen bir çocuk.",
@@ -89,16 +139,17 @@ export const COURSES: Course[] = [
 export const PACKAGES: Package[] = [
   { key: "kesif", kind: "kocluk", title: "Keşif", duration: "4 hafta", price: 6000,
     summary: "Çocuğunuzu ve ailenizi tanıdığımız, ilk hedeflerin konduğu başlangıç programı.",
-    items: ["Mizaç ve öğrenme testleri ve koç yorumu", "4 birebir öğrenci görüşmesi", "1 veli görüşmesi", "Hedef belirleme ve ilk plan"] },
+    items: ["Mizaç ve öğrenme testleri (dahil) ve koç yorumu", "4 birebir öğrenci görüşmesi", "1 veli görüşmesi", "Hedef belirleme ve ilk plan"] },
   { key: "gelisim", kind: "kocluk", title: "Gelişim", duration: "12 hafta", price: 16500, featured: true,
     summary: "Haftalık takip, ara değerlendirme ve gelişim raporuyla tam koçluk süreci.",
     items: ["12 haftalık birebir koçluk", "Haftalık takip ve koç değerlendirmesi", "4. ve 12. hafta raporları", "3 veli görüşmesi", "Meslek yönelim çalışması"] },
   { key: "aile-programi", kind: "kocluk", title: "Aile Programı", duration: "12 hafta", price: 24000,
     summary: "Öğrenci koçluğu ile ebeveyn eğitimini birleştiren, bütün aileyi kapsayan program.",
-    items: ["Gelişim paketindeki her şey", "Seçeceğiniz 3 ebeveyn eğitimi", "Davranış programında koç desteği", "Öğrenci, veli ve koç üçlü değerlendirmesi"] },
+    items: ["Gelişim paketindeki her şey", "Davranış eğitimi Tam Paket", "Davranış programında koç desteği", "Öğrenci, veli ve koç üçlü değerlendirmesi"] },
 ];
 
-export type Product = Course | Package;
-export const PRODUCTS: Product[] = [...COURSES, ...PACKAGES];
+export const COURSES: Course[] = [...PACKAGE_COURSES, ...TOPIC_COURSES];
+export type Product = Course | Package | TestProduct;
+export const PRODUCTS: Product[] = [...COURSES, ...PACKAGES, TEST_PRODUCT];
 export const productByKey = (k: string) => PRODUCTS.find((p) => p.key === k);
 export const courseByKey = (k: string) => COURSES.find((c) => c.key === k);

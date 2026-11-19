@@ -9,12 +9,12 @@ export default function Footer() {
       <div className="wrap grid gap-10 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div className="flex flex-col gap-4">
           <Logo light />
-          <p className="max-w-sm text-bg/70">{SITE.slogan} Öğrenci koçluğu ve ebeveyn eğitimini aynı çatı altında, aileyle birlikte yürütüyoruz.</p>
+          <p className="max-w-sm text-bg/70">{SITE.slogan} Öğrencilere koçluk yapıyor, ebeveynlere çocuklarının davranışlarını kendi başlarına değiştirmeyi öğretiyoruz.</p>
         </div>
         <div className={col}>
           <b className="mb-1 font-display text-lg">Programlar</b>
-          <Link href="/ebeveyn-egitimi" className="text-bg/70 hover:text-bg">Ebeveyn eğitimleri</Link>
           <Link href="/ogrenci-koclugu" className="text-bg/70 hover:text-bg">Öğrenci koçluğu</Link>
+          <Link href="/ebeveyn-egitimi" className="text-bg/70 hover:text-bg">Ebeveyn davranış eğitimi</Link>
           <Link href="/davranis-programi" className="text-bg/70 hover:text-bg">Davranış programı</Link>
           <Link href="/testler" className="text-bg/70 hover:text-bg">Mizaç ve öğrenme testleri</Link>
         </div>

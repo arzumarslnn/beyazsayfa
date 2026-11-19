@@ -20,10 +20,10 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ o
         <div className="grid gap-4 md:grid-cols-2">
           {orders.map((x) => { const p = productByKey(x.product_key); return (
             <div key={x.id} className="card flex flex-col gap-2">
-              <span className="chip self-start bg-sage text-ink">{p?.kind === "egitim" ? "Ebeveyn eğitimi" : "Koçluk paketi"}</span>
+              <span className="chip self-start bg-sage text-ink">{p?.kind === "egitim" ? "Ebeveyn eğitimi" : p?.kind === "test" ? "Testler" : "Koçluk paketi"}</span>
               <h2 className="text-2xl">{x.product_title}</h2>
               <p className="text-sm text-muted">{x.paid_at ? trDate(x.paid_at) : ""}</p>
-              {p?.kind === "egitim" ? <Link href={`/ebeveyn-egitimi/${p.key}`} className="btn-primary btn-sm mt-2 self-start">Derslere git</Link> : <p className="mt-2 text-muted">Koçunuz görüşme takvimi için sizinle iletişime geçecek.</p>}
+              {p?.kind === "egitim" ? <Link href={`/ebeveyn-egitimi/${p.key}`} className="btn-primary btn-sm mt-2 self-start">Derslere git</Link> : p?.kind === "test" ? <p className="mt-2 text-muted">Çocuğunuz testleri kendi öğrenci hesabıyla çözebilir.</p> : <p className="mt-2 text-muted">Koçunuz görüşme takvimi için sizinle iletişime geçecek.</p>}
             </div>
           ); })}
         </div>

@@ -20,6 +20,7 @@ export default {
         action: v("action"),
         "action-ink": v("action-ink"),
         accent: v("accent"),
+        leaf: v("leaf"),
         ok: v("ok"),
         warn: v("warn"),
         bad: v("bad"),

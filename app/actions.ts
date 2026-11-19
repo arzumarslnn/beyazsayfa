@@ -30,28 +30,69 @@ async function requireAdmin() {
 export async function submitAppointment(_: ActionState, f: FormData): Promise<ActionState> {
   if (!f.get("kvkk")) return { error: "Devam etmek için KVKK onay kutusunu işaretleyin." };
   const name = str(f, "name", 120), phone = str(f, "phone", 40);
+  const day = str(f, "pref_date", 10), slot = str(f, "slot_time", 5);
+  if (!day || !slot) return { error: "Lütfen takvimden bir gün ve boş bir saat seçin." };
   if (!name || !phone) return { error: "Ad soyad ve telefon gerekli." };
+  const { isBookable } = await import("@/lib/slots");
+  if (!isBookable(day, slot)) return { error: "Bu saat artık seçilemiyor. Lütfen başka bir saat seçin." };
   const supabase = await createClient();
+  const { data: busy } = await supabase.rpc("busy_slots", { p_from: day, p_to: day });
+  if ((busy as { slot: string }[] | null)?.some((b) => b.slot === slot || b.slot === "*")) return { error: "Bu saat az önce doldu. Lütfen başka bir saat seçin." };
+  const topic = str(f, "topic", 120);
   const { error } = await supabase.from("appointments").insert({
-    name, phone, email: str(f, "email", 160) || null, who: str(f, "who", 40), topic: str(f, "topic", 120),
-    pref_date: str(f, "pref_date", 10) || null, time_slot: str(f, "time_slot", 40), note: str(f, "note", 2000) || null,
+    name, phone, email: str(f, "email", 160) || null, who: str(f, "who", 40), topic,
+    pref_date: day, slot_time: slot, time_slot: slot, note: str(f, "note", 2000) || null,
   });
-  if (error) return { error: "Talebiniz kaydedilemedi, lütfen tekrar deneyin ya da WhatsApp'tan yazın." };
-  if (process.env.ADMIN_EMAIL) {
-    await sendEmail(process.env.ADMIN_EMAIL, `Yeni randevu talebi: ${name}`, `${name} (${phone}) randevu talep etti.\nKonu: ${str(f, "topic")}\nTercih: ${str(f, "pref_date")} ${str(f, "time_slot")}\nNot: ${str(f, "note")}`);
-  }
-  return { ok: true, msg: "Talebiniz alındı. En geç 24 saat içinde sizi arayacağız." };
+  if (error) return { error: error.code === "23505" ? "Bu saat az önce doldu. Lütfen başka bir saat seçin." : "Randevunuz kaydedilemedi, lütfen tekrar deneyin ya da WhatsApp'tan yazın." };
+  const when = `${trDate(day)} saat ${slot}`;
+  if (process.env.ADMIN_EMAIL) await sendEmail(process.env.ADMIN_EMAIL, `Yeni randevu: ${name}, ${when}`, `${name} (${phone}) ${when} için randevu aldı.\nKonu: ${topic}\nNot: ${str(f, "note")}`);
+  const email = str(f, "email", 160);
+  if (email) await sendEmail(email, `Randevunuz alındı: ${when}`, `Merhaba ${name},\n\n${SITE.name} ile ${when} için ön görüşme randevunuz alındı. Görüşme öncesinde sizi arayacağız.\n\nSorularınız için: ${SITE.phone}`);
+  revalidatePath("/panel/yonetim/randevular");
+  return { ok: true, msg: `Randevunuz ${when} için alındı. Görüşmeden önce sizi arayıp teyit edeceğiz.` };
+}
+
+export async function addSlotBlock(_: ActionState, f: FormData): Promise<ActionState> {
+  await requireAdmin();
+  const day = str(f, "day", 10);
+  if (!day) return { error: "Tarih seçin." };
+  const supabase = await createClient();
+  const { error } = await supabase.from("slot_blocks").insert({ day, slot: str(f, "slot", 5) || null, note: str(f, "note", 200) || null });
+  if (error) return { error: "Kaydedilemedi." };
+  revalidatePath("/panel/yonetim/randevular");
+  return { ok: true, msg: "Takvim güncellendi." };
+}
+export async function deleteSlotBlock(id: string) {
+  await requireAdmin();
+  const supabase = await createClient();
+  await supabase.from("slot_blocks").delete().eq("id", id);
+  revalidatePath("/panel/yonetim/randevular");
+}
+export async function saveSetting(_: ActionState, f: FormData): Promise<ActionState> {
+  await requireAdmin();
+  const key = str(f, "key", 60), value = str(f, "value", 2000);
+  const { videoSource } = await import("@/lib/video");
+  if (key === "intro_video" && value && !videoSource(value)) return { error: "Bu bağlantı tanınmadı. YouTube ya da Vimeo bağlantısı yapıştırın." };
+  const supabase = await createClient();
+  const { error } = await supabase.from("site_settings").upsert({ key, value, updated_at: new Date().toISOString() });
+  if (error) return { error: "Kaydedilemedi." };
+  revalidatePath("/", "layout");
+  return { ok: true, msg: value ? "Kaydedildi. Ana sayfada görünüyor." : "Video kaldırıldı." };
 }
 
 /* ---------------- Deneyim ---------------- */
 export async function submitTestimonial(_: ActionState, f: FormData): Promise<ActionState> {
   const me = await requireMe();
   const body = str(f, "body", 1200);
-  if (body.length < 20) return { error: "Lütfen deneyiminizi biraz daha ayrıntılı yazın." };
+  const video_path = str(f, "video_path", 300) || null;
+  const video_url = str(f, "video_url", 500) || null;
+  if (video_path && !video_path.startsWith(`${me.id}/`)) return { error: "Video yüklenemedi." };
+  if (video_url) { const { videoSource } = await import("@/lib/video"); if (!videoSource(video_url)) return { error: "Video bağlantısı tanınmadı. YouTube ya da Vimeo bağlantısı yapıştırın." }; }
+  if (!video_path && !video_url && body.length < 20) return { error: "Lütfen deneyiminizi biraz daha ayrıntılı yazın ya da bir video ekleyin." };
   if (!f.get("izin")) return { error: "Yayın izni kutusunu işaretleyin." };
   const display = me.full_name ? `${me.full_name.split(" ")[0]} ${(me.full_name.split(" ")[1] || "").charAt(0)}.`.trim() : "Bir üyemiz";
   const supabase = await createClient();
-  const { error } = await supabase.from("testimonials").insert({ display_name: display, role_label: me.role === "ogrenci" ? "Öğrenci" : "Veli", body });
+  const { error } = await supabase.from("testimonials").insert({ display_name: display, role_label: me.role === "ogrenci" ? "Öğrenci" : "Veli", body, video_path, video_url });
   if (error) return { error: "Gönderilemedi, tekrar deneyin." };
   return { ok: true, msg: "Teşekkürler! Paylaşımınız onaylandıktan sonra yayınlanacak." };
 }
@@ -249,7 +290,7 @@ export async function startCheckout(_: ActionState, f: FormData): Promise<Action
   const { data: order, error } = await admin.from("orders").insert({ user_id: me.id, product_key: p.key, product_title: p.title, amount: p.price }).select("id").single();
   if (error || !order) return { error: "Sipariş oluşturulamadı." };
   const res = await initCheckout({
-    orderId: order.id, price: p.price, title: p.title, category: p.kind === "egitim" ? "Ebeveyn eğitimi" : "Koçluk paketi", userId: me.id, buyer,
+    orderId: order.id, price: p.price, title: p.title, category: p.kind === "egitim" ? "Ebeveyn eğitimi" : p.kind === "test" ? "Test" : "Koçluk paketi", userId: me.id, buyer,
     callbackUrl: `${SITE.url}/api/odeme/sonuc`,
   });
   if (res.status !== "success" || !res.paymentPageUrl) {
@@ -279,9 +320,10 @@ export async function moderateTestimonial(id: string, action: "onayla" | "gizle"
 export async function addTestimonialAdmin(_: ActionState, f: FormData): Promise<ActionState> {
   await requireAdmin();
   const body = str(f, "body", 1200), name = str(f, "display_name", 80);
-  if (!body || !name) return { error: "İsim ve metin gerekli." };
+  if ((!body && !str(f, "video_url")) || !name) return { error: "İsim ve metin ya da video bağlantısı gerekli." };
   const supabase = await createClient();
-  const { error } = await supabase.from("testimonials").insert({ display_name: name, role_label: str(f, "role_label", 40) || "Veli", body, approved: true, user_id: null });
+  const video_url = str(f, "video_url", 500) || null;
+  const { error } = await supabase.from("testimonials").insert({ display_name: name, role_label: str(f, "role_label", 40) || "Veli", body, video_url, approved: true, user_id: null });
   if (error) return { error: "Eklenemedi." };
   revalidatePath("/panel/yonetim/deneyimler"); revalidatePath("/deneyimler"); revalidatePath("/");
   return { ok: true, msg: "Deneyim yayınlandı." };

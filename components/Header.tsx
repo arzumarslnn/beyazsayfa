@@ -4,8 +4,8 @@ import MobileMenu from "./MobileMenu";
 import { getMe } from "@/lib/supabase/server";
 
 export const NAV = [
-  { href: "/ebeveyn-egitimi", label: "Ebeveyn Eğitimi" },
   { href: "/ogrenci-koclugu", label: "Öğrenci Koçluğu" },
+  { href: "/ebeveyn-egitimi", label: "Davranış Eğitimi" },
   { href: "/davranis-programi", label: "Davranış Programı" },
   { href: "/testler", label: "Testler" },
   { href: "/hakkimizda", label: "Hakkımızda" },

@@ -8,11 +8,11 @@ const BG: Record<string, string> = { blush: "bg-blush", sky: "bg-sky", butter: "
 
 export default async function Page() {
   const me = await getMe().catch(() => null);
-  const start = me ? "/panel/davranis/yeni" : "/kayit?sonra=/panel/davranis/yeni";
+  const start = me ? "/panel/davranis/yeni" : "/kayit?rol=veli&sabit=1&sonra=/panel/davranis/yeni";
   return (
     <>
-      <PageHead eyebrow="Ebeveyn davranış programı" title="Davranışı seç, kaydet, değiştir"
-        lead="Davranış bilimine dayanan ABC yöntemiyle çocuğunuzun davranışını anlayın. Kayıtlarınız size özel bir uygulama planına, günlük kayıtlarınız ise gelişimi gösteren bir grafiğe dönüşür. Üyelere ücretsizdir.">
+      <PageHead eyebrow="Ebeveyn davranış programı" title="Davranışı öğrenin, yöntemleri öğrenin, siz değiştirin"
+        lead="Bu program ebeveynler içindir. Çocuğunuzun davranışını biz düzeltmiyoruz; ABC yöntemiyle davranışı tanımanızı, tekniklerle onu kendi başınıza değiştirmenizi sağlıyoruz. Kayıtlarınız size özel bir plana, günlük kayıtlarınız gelişimi gösteren bir grafiğe dönüşür. Veli üyelerimize ücretsizdir.">
         <div className="flex flex-wrap gap-3"><Link href={start} className="btn-primary">Programı başlat</Link><a href="#nasil" className="btn-ghost">Nasıl çalışır?</a></div>
       </PageHead>
 
@@ -50,7 +50,7 @@ export default async function Page() {
               <div className="flex flex-wrap items-center justify-between gap-2"><h3>{b.title}</h3><span className="chip bg-bg/70 text-ink">{b.age}</span></div>
               <p className="mt-2 text-ink">Sık duyduğumuz cümleler: {b.examples.map((e) => `“${e}”`).join(", ")}</p>
               <p className="mt-4 rounded-2xl bg-bg/70 p-4"><b>Hedef davranış:</b> {b.target}</p>
-              <Link href={me ? `/panel/davranis/yeni?b=${b.key}` : `/kayit?sonra=/panel/davranis/yeni?b=${b.key}`} className="mt-4 inline-block font-bold">Bu davranışla başla →</Link>
+              <Link href={me ? `/panel/davranis/yeni?b=${b.key}` : `/kayit?rol=veli&sabit=1&sonra=${encodeURIComponent(`/panel/davranis/yeni?b=${b.key}`)}`} className="mt-4 inline-block font-bold">Bu davranışla başla →</Link>
             </div>
           ))}
         </div>

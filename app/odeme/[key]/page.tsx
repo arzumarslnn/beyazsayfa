@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: Promise<{ key: string }
         )}
       </div>
       <aside className="flex flex-col gap-4 self-start rounded-[2rem] bg-paper p-8">
-        <span className="eyebrow">{p.kind === "egitim" ? "Ebeveyn eğitimi" : "Koçluk paketi"}</span>
+        <span className="eyebrow">{p.kind === "egitim" ? "Ebeveyn davranış eğitimi" : p.kind === "test" ? "Testler" : "Koçluk paketi"}</span>
         <h2 className="text-3xl">{p.title}</h2>
         <p className="text-muted">{p.kind === "egitim" ? p.promise : p.summary}</p>
         <div className="flex items-baseline justify-between border-t border-line pt-4"><span className="font-semibold">Toplam</span><span className="font-display text-3xl font-extrabold tabular-nums">{tl(p.price)}</span></div>

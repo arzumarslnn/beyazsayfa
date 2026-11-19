@@ -38,7 +38,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
               ) : me ? (
                 <><span className="font-display text-4xl font-extrabold tabular-nums">{tl(c.price)}</span><Link href={`/odeme/${c.key}`} className="btn-primary">Satın al</Link></>
               ) : (
-                <><Link href={`/kayit?sonra=/ebeveyn-egitimi/${c.key}`} className="btn-primary">Üye ol, fiyatı gör</Link><Link href={`/giris?sonra=/ebeveyn-egitimi/${c.key}`} className="btn-light">Giriş yap</Link></>
+                <><Link href={`/kayit?rol=veli&sabit=1&sonra=/ebeveyn-egitimi/${c.key}`} className="btn-primary">Üye ol, fiyatı gör</Link><Link href={`/giris?sonra=/ebeveyn-egitimi/${c.key}`} className="btn-light">Giriş yap</Link></>
               )}
             </div>
           </div>
@@ -50,11 +50,17 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         <div className="flex flex-col gap-4">
           <h2 className="text-3xl">Bu eğitimde öğrenecekleriniz</h2>
           <ul className="grid gap-3">{c.outcomes.map((o) => <li key={o} className="flex gap-3 text-lg"><span className="text-action">✓</span>{o}</li>)}</ul>
-          {c.behaviorKey && (
+          {c.includes && (
+            <div className="mt-4 rounded-3xl bg-butter p-6">
+              <b className="font-display text-lg">Bu paket şunları içerir</b>
+              <ul className="mt-2 grid gap-1">{c.includes.map((k) => { const x = courseByKey(k); return x ? <li key={k}><Link href={`/ebeveyn-egitimi/${k}`} className="font-semibold underline">{x.title}</Link></li> : null; })}</ul>
+            </div>
+          )}
+          {(c.behaviorKey || c.group === "paket") && (
             <div className="mt-4 rounded-3xl bg-paper p-6">
               <b className="font-display text-lg">Davranış programıyla birlikte</b>
-              <p className="mt-1 text-muted">Eğitimi izlerken aynı davranış için ABC kaydı tutun; uygulama planınız kayıtlarınıza göre kişiselleşsin.</p>
-              <Link href={me ? `/panel/davranis/yeni?b=${c.behaviorKey}` : "/davranis-programi"} className="mt-3 inline-block font-bold text-action">Programı başlat →</Link>
+              <p className="mt-1 text-muted">Öğrendiğiniz teknikleri evde uygularken ABC kaydı tutun; planınız kayıtlarınıza göre kişiselleşsin, gelişimi grafikte görün.</p>
+              <Link href={me ? `/panel/davranis/yeni${c.behaviorKey ? `?b=${c.behaviorKey}` : ""}` : "/davranis-programi"} className="mt-3 inline-block font-bold text-action">Programı başlat →</Link>
             </div>
           )}
         </div>

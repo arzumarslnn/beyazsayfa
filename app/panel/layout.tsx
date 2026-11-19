@@ -32,9 +32,9 @@ export default async function PanelLayout({ children }: { children: React.ReactN
     ] : [
       { href: "/panel", label: "Genel bakış" }, { href: "/panel/yonetim/ogrenciler", label: "Öğrenciler ve üçlü takip" },
       { href: "/panel/yonetim/formlar", label: "Doldurulan formlar" }, { href: "/panel/formlar", label: "Koç formu doldur" },
-      { href: "/panel/yonetim/randevular", label: "Randevu talepleri", badge: newAppts }, { href: "/panel/yonetim/siparisler", label: "Siparişler ve erişim" },
+      { href: "/panel/yonetim/randevular", label: "Randevular", badge: newAppts }, { href: "/panel/yonetim/siparisler", label: "Siparişler ve erişim" },
       { href: "/panel/yonetim/programlar", label: "Davranış programları" }, { href: "/panel/yonetim/blog", label: "Blog yazıları" },
-      { href: "/panel/yonetim/deneyimler", label: "Deneyimler" }, { href: "/panel/hesap", label: "Hesabım" },
+      { href: "/panel/yonetim/deneyimler", label: "Deneyimler" }, { href: "/panel/yonetim/ayarlar", label: "Site ayarları" }, { href: "/panel/hesap", label: "Hesabım" },
     ];
   return (
     <div className="wrap grid gap-8 py-10 md:grid-cols-[240px_1fr]">
